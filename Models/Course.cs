@@ -13,7 +13,6 @@ namespace RoxSchool.Models
         public string CourseName { get; set; }
         [StringLength(200)]
         public string? CourseDescription { get; set; }
-        public int FkEnrollmentId { get; set; }
         public ICollection<Enrollment> Enrollments { get; set; }
     }
 }
