@@ -9,11 +9,11 @@ namespace RoxSchool.Data
             : base(options)
         {
         }
-        DbSet<Student> Students { get; set; }
-        DbSet<Teacher> Teachers { get; set; }
-        DbSet<Course> Courses { get; set; }
-        DbSet<StudentClass> StudentClasses { get; set; }
-        DbSet<Enrollment> Enrollments { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<StudentClass> StudentClasses { get; set; }
+        public DbSet<Enrollment> Enrollments { get; set; }
 
     }
 }

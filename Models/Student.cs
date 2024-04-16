@@ -19,6 +19,8 @@ namespace RoxSchool.Models
         public string StudentPhone { get; set;}
         [Required]
         public int StudentDoB { get; set; }
-        public ICollection<Enrollment> Enrollments { get; set; }
+        [ForeignKey("FkStudentClassId")]
+        public int FkStudentClassId { get; set; }
+        public ICollection<Enrollment>? Enrollments { get; set; }
     }
 }
