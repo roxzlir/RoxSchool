@@ -10,10 +10,8 @@ namespace RoxSchool.Models
         public int EnrollmentId { get; set; }
 
         [ForeignKey("StudentId")]
-        public int FkStudentId { get; set; }
         public Student Student { get; set; }
         [ForeignKey("CourseId")]
-        public int FkCourseId { get; set; }
         public Course Course { get; set; }
         
     }
