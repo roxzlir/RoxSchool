@@ -11,6 +11,6 @@ namespace RoxSchool.Models
         [Required]
         [StringLength(15)]
         public string StudentClassName { get; set; }
-        public ICollection<Student>? Students { get; set; }
+        public IList<Student>? Students { get; set; }
     }
 }

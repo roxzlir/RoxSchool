@@ -9,12 +9,12 @@ namespace RoxSchool.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EnrollmentId { get; set; }
 
-        [ForeignKey("FkStudentId")]
+        [ForeignKey("Student")]
         public int FkStudentId { get; set; }
-        public Student Student { get; set; }
-        [ForeignKey("FkCourseId")]
+        public Student? Student { get; set; }
+        [ForeignKey("Course")]
         public int FkCourseId { get; set; }
-        public Course Course { get; set; }
+        public Course? Course { get; set; }
         
 
     }
