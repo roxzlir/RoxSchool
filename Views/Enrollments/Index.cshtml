@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RoxSchool.Models.Enrollment>
+﻿@model IEnumerable<RoxSchool.Models.EnrollmentViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -12,16 +12,34 @@
 <table class="table">
     <thead>
         <tr>
-            <th></th>
+            <th>
+                Student in class
+            </th>
+            <th>
+                Course
+            </th>
+            <th>
+                Teacher
+            </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.EnrollmentId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EnrollmentId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EnrollmentId">Delete</a>
+                @Html.DisplayFor(modelItem => item.Student.StudentName) /
+                    @Html.DisplayFor(modelItem => item.StudentClass.StudentClassName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.CourseName)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.Teacher.TeacherName)
+            </td>
+                <td class="btn-group btn-group-sm">
+                <a asp-action="Edit" asp-route-id="@item.Enrollment.EnrollmentId" class="btn btn-primary">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Enrollment.EnrollmentId" class="btn btn-primary">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Enrollment.EnrollmentId" class="btn btn-primary">Delete</a>
             </td>
         </tr>
 }
