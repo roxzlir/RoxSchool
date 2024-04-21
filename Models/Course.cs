@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace RoxSchool.Models
 {
@@ -10,8 +11,10 @@ namespace RoxSchool.Models
         public int CourseId { get; set; }
         [Required]
         [StringLength(20)]
+        [DisplayName("Subject")]
         public string CourseName { get; set; }
         [StringLength(200)]
+        [DisplayName("Course Description")]
         public string? CourseDescription { get; set; }
         [ForeignKey("Teacher")]
         public int FkTeacherId { get; set; }

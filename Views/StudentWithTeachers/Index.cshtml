@@ -1,0 +1,29 @@
+﻿@model IEnumerable<RoxSchool.Models.StudentWithTeachers>
+
+@{
+    ViewData["Title"] = "Students With Teachers";
+}
+
+<h1>Students With Teachers</h1>
+
+
+
+@foreach (var student in Model)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@student.StudentName</th>
+            </tr>
+        </thead>
+        @foreach (var teacherName in student.TeacherNames)
+        {
+            <tbody>
+                <tr>
+                    <td>@teacherName</td>
+                </tr>
+            </tbody>
+        }
+    </table>
+}
+

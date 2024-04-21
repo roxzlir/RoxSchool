@@ -22,7 +22,7 @@ namespace RoxSchool.Controllers
         // GET: Courses
         public async Task<IActionResult> Index()
         {
-            var appDbContext = _context.Courses.Include(c => c.Teacher);
+            var appDbContext = _context.Courses.Include(c => c.Teacher).OrderBy(x => x.CourseName);
             return View(await appDbContext.ToListAsync());
         }
 
@@ -48,7 +48,7 @@ namespace RoxSchool.Controllers
         // GET: Courses/Create
         public IActionResult Create()
         {
-            ViewData["FkTeacherId"] = new SelectList(_context.Teachers, "TeacherId", "TeacherEmail");
+            ViewData["FkTeacherId"] = new SelectList(_context.Teachers, "TeacherId", "TeacherName");
             return View();
         }
 
@@ -82,7 +82,7 @@ namespace RoxSchool.Controllers
             {
                 return NotFound();
             }
-            ViewData["FkTeacherId"] = new SelectList(_context.Teachers, "TeacherId", "TeacherEmail", course.FkTeacherId);
+            ViewData["FkTeacherId"] = new SelectList(_context.Teachers, "TeacherId", "TeacherName", course.FkTeacherId);
             return View(course);
         }
 

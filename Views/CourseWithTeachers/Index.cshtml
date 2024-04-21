@@ -1,0 +1,53 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="row">
+    <div class="col-sm-2">
+        <select id="course-select">
+            @foreach (var item in Model.Courses)
+            {
+                <option value="@item.CourseId" asp-route-courseId="@item.CourseId">@item.CourseName</option>
+            }
+        </select>
+    </div>
+    <div class="col-sm-10">
+        <table class="table">
+            <div class="teacher-section">
+                @if (!string.IsNullOrEmpty(Model.SelectedCourse))
+                {
+                    <tbody>
+                        <h2>@Model.SelectedCourse</h2>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone number</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model.Teachers)
+                        {
+                            <tr>
+                                <td>@item.TeacherName</td>
+                                <td>@item.TeacherPhone</td>
+                                <td>@item.TeacherEmail</td>
+                            </tr>
+                        }
+                    </tbody>
+                    
+                }
+                else
+                {
+                    <h2>Welcome! Please select a course on the left menu</h2>
+                }
+            </div>
+        </table>
+    </div>
+</div>
+<script>
+    document.getElementById('course-select').addEventListener('change', function () {
+        var courseId = this.value;
+        window.location.href = '/CourseWithTeachers?courseId=' + courseId;
+    });
+</script>

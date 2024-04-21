@@ -6,9 +6,10 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="btn-group">
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+    <a asp-controller="CourseWithStudents" asp-action="Index" class="btn btn-primary">Course register</a>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -34,7 +35,7 @@
                 @Html.DisplayFor(modelItem => item.CourseDescription)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Teacher.TeacherEmail)
+                @Html.DisplayFor(modelItem => item.Teacher.TeacherName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CourseId">Edit</a> |

@@ -16,7 +16,6 @@ namespace RoxSchool.Models
         public string TeacherEmail { get; set; }
         [Required]
         [StringLength(20)]
-        public string TeacherPhone { get; set; }
-        
+        public string TeacherPhone { get; set; } 
     }
 }

@@ -6,9 +6,10 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="btn-group">
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+    <a asp-controller="StudentWithTeachers" asp-action="Index" class="btn btn-primary">View Students with Teachers</a>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -25,7 +26,7 @@
                 @Html.DisplayNameFor(model => model.StudentDoB)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FkStudentClassId)
+                @Html.DisplayNameFor(model => model.StudentClass)
             </th>
             <th></th>
         </tr>
@@ -46,7 +47,7 @@
                 @Html.DisplayFor(modelItem => item.StudentDoB)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FkStudentClassId)
+                @Html.DisplayFor(modelItem => item.StudentClass.StudentClassName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |

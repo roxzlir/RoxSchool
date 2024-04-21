@@ -22,7 +22,12 @@ namespace RoxSchool.Controllers
         // GET: Students
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Students.ToListAsync());
+            var students = await _context.Students
+        .Include(s => s.StudentClass)
+        .OrderBy(s => s.FkStudentClassId)
+        .ToListAsync();
+            return View(students);
+            
         }
 
         // GET: Students/Details/5
@@ -34,7 +39,9 @@ namespace RoxSchool.Controllers
             }
 
             var student = await _context.Students
+                .Include(s => s.StudentClass)
                 .FirstOrDefaultAsync(m => m.StudentId == id);
+                
             if (student == null)
             {
                 return NotFound();

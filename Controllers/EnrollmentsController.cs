@@ -24,6 +24,7 @@ namespace RoxSchool.Controllers
         {
             //var appDbContext = _context.Enrollments.Include(e => e.Course).Include(e => e.Student).Include(s => s.Student);
 
+            //Här nyttjar jag min EnrolleViewModel
             var query = from enroll in _context.Enrollments
                         join stu in _context.Students on enroll.FkStudentId equals stu.StudentId
                         join cours in _context.Courses on enroll.FkCourseId equals cours.CourseId
@@ -31,8 +32,10 @@ namespace RoxSchool.Controllers
                         join stuCl in _context.StudentClasses on stu.FkStudentClassId equals stuCl.StudentClassId
                         select new EnrollmentViewModel {Enrollment = enroll, Student = stu, Course = cours, Teacher = teach, StudentClass = stuCl};
 
-            var enrollments = await query.ToListAsync();
+            var enrollments = await query.OrderBy(c => c.Course.CourseName).ToListAsync();
             return View(enrollments);
+
+            //return View(await appDbContext.ToListAsync());
         }
 
         // GET: Enrollments/Details/5
@@ -59,7 +62,8 @@ namespace RoxSchool.Controllers
         public IActionResult Create()
         {
             ViewData["FkCourseId"] = new SelectList(_context.Courses, "CourseId", "CourseName");
-            ViewData["FkStudentId"] = new SelectList(_context.Students, "StudentId", "StudentEmail");
+            ViewData["FkStudentId"] = new SelectList(_context.Students, "StudentId", "StudentName");
+
             return View();
         }
 
@@ -77,7 +81,7 @@ namespace RoxSchool.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["FkCourseId"] = new SelectList(_context.Courses, "CourseId", "CourseName", enrollment.FkCourseId);
-            ViewData["FkStudentId"] = new SelectList(_context.Students, "StudentId", "StudentEmail", enrollment.FkStudentId);
+            ViewData["FkStudentId"] = new SelectList(_context.Students, "StudentId", "StudentName", enrollment.FkStudentId);
             return View(enrollment);
         }
 
@@ -95,7 +99,7 @@ namespace RoxSchool.Controllers
                 return NotFound();
             }
             ViewData["FkCourseId"] = new SelectList(_context.Courses, "CourseId", "CourseName", enrollment.FkCourseId);
-            ViewData["FkStudentId"] = new SelectList(_context.Students, "StudentId", "StudentEmail", enrollment.FkStudentId);
+            ViewData["FkStudentId"] = new SelectList(_context.Students, "StudentId", "StudentName", enrollment.FkStudentId);
             return View(enrollment);
         }
 
@@ -175,5 +179,6 @@ namespace RoxSchool.Controllers
         {
             return _context.Enrollments.Any(e => e.EnrollmentId == id);
         }
+
     }
 }
