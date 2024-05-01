@@ -7,8 +7,8 @@
 <h1>Index</h1>
 
 <div class="btn-group">
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
-    <a asp-controller="StudentWithTeachers" asp-action="Index" class="btn btn-primary">View Students with Teachers</a>
+    <a asp-action="Create" class="btn btn-success">Create New</a>
+    <a asp-controller="StudentWithTeachers" asp-action="Index" class="btn btn-primary">Student Teachers Index</a>
 </div>
 <table class="table">
     <thead>
@@ -49,10 +49,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.StudentClass.StudentClassName)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.StudentId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>
+            <td class="btn-group btn-group-sm">
+                    <a asp-action="Edit" asp-route-id="@item.StudentId" class="btn btn-success">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.StudentId" class="btn btn-primary">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.StudentId" class="btn btn-danger">Delete</a>
             </td>
         </tr>
 }
